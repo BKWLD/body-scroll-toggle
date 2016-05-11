@@ -1,3 +1,4 @@
+
 # The last scrollTop
 scrollTop = null
 originalStyles = null
@@ -11,7 +12,7 @@ module.exports =
 	# Disable scrolling
 	# http://stackoverflow.com/a/3968772/59160
 	disable: ->
-		scrollTop = document.body.scrollTop
+		scrollTop = $(document).scrollTop()
 		originalStyles = document.body.style.cssText
 		document.body.style.cssText = ';'+"
 			overflow: hidden;
