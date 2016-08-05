@@ -1,11 +1,11 @@
 {
   "name": "body-scroll-toggle",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Enables / disables scroll on the body",
   "main": "index.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-		"build": "node_modules/.bin/webpack && node_modules/.bin/webpack -p",
+    "build": "node_modules/.bin/webpack && node_modules/.bin/webpack -p",
     "version": "npm run build && git add -A",
     "postversion": "git push --follow-tags"
   },
