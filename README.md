@@ -9,6 +9,17 @@ bodyScroll.disable()
 bodyScroll.enable()
 ```
 
+A disadvantage of this approach is that the iOS bottom nav bar will get re-displayed when the scroll is disabled.
+
+## Alternatives
+
+There are JS `event.preventDefault()` based approaches like:
+
+- https://github.com/gilbarbara/disable-scroll
+- https://github.com/ultrapasty/jquery-disablescroll
+
+These work but will prevent scrolling of internal elements that have an `overflow:scroll`, which is often the case in mobile navs.
+
 ## Contributing
 
 Run `npm version <newversino> && npm publish` to push new builds up.
