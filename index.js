@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  enable: function() {
 	    document.body.style.cssText = originalStyles;
-	    return document.body.scrollTop = scrollTop;
+	    return (document.scrollingElement || document.documentElement).scrollTop = scrollTop;
 	  }
 	};
 
