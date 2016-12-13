@@ -21,7 +21,8 @@ module.exports =
 			width:    100%;
 			top:      #{-scrollTop}px; "
 
-	# Re-enable scrolling
+	# Re-enable scrolling.  FF/IE work differently than Chrome
+	# http://stackoverflow.com/a/39657473/59160
 	enable: ->
 		document.body.style.cssText = originalStyles
-		document.body.scrollTop = scrollTop
+		(document.scrollingElement || document.documentElement).scrollTop = scrollTop
