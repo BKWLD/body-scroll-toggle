@@ -1,4 +1,8 @@
 
+# Scroll container reference in different browsers
+# http://stackoverflow.com/a/39657473/59160
+scrollContainer = document.scrollingElement || document.documentElement
+
 # The last scrollTop
 scrollTop = null
 originalStyles = null
@@ -12,7 +16,7 @@ module.exports =
 	# Disable scrolling
 	# http://stackoverflow.com/a/3968772/59160
 	disable: ->
-		scrollTop = $(document).scrollTop()
+		scrollTop = scrollContainer.scrollTop
 		originalStyles = document.body.style.cssText
 		document.body.style.cssText = ';'+"
 			overflow: hidden;
@@ -21,8 +25,7 @@ module.exports =
 			width:    100%;
 			top:      #{-scrollTop}px; "
 
-	# Re-enable scrolling.  FF/IE work differently than Chrome
-	# http://stackoverflow.com/a/39657473/59160
+	# Re-enable scrolling
 	enable: ->
 		document.body.style.cssText = originalStyles
-		(document.scrollingElement || document.documentElement).scrollTop = scrollTop
+		scrollContainer.scrollTop = scrollTop
