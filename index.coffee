@@ -1,31 +1,34 @@
+###
+See http://stackoverflow.com/a/4770179/59160
+###
 
-# Scroll container reference in different browsers
-# http://stackoverflow.com/a/39657473/59160
-scrollContainer = document.scrollingElement || document.documentElement
+keys = {37: 1, 38: 1, 39: 1, 40: 1}
 
-# The last scrollTop
-scrollTop = null
-originalStyles = null
+preventDefault = (e) ->
+	console.log e
+	e = e || window.event
+	e.preventDefault() if e.preventDefault
+	e.returnValue = false
 
-# Public API
+preventDefaultForScrollKeys = (e) ->
+	if keys[e.keyCode]
+		preventDefault(e)
+		return false
+
 module.exports =
 
-	# Toggle scrolling
-	toggle: -> if scrollTop then disable() else enable()
-
-	# Disable scrolling
-	# http://stackoverflow.com/a/3968772/59160
 	disable: ->
-		scrollTop = scrollContainer.scrollTop
-		originalStyles = document.body.style.cssText
-		document.body.style.cssText = ';'+"
-			overflow: hidden;
-			position: fixed;
-			height:   100%;
-			width:    100%;
-			top:      #{-scrollTop}px; "
+		if window.addEventListener # older FF
+			window.addEventListener('DOMMouseScroll', preventDefault, false)
+		window.onwheel = preventDefault # modern standard
+		window.onmousewheel = document.onmousewheel = preventDefault # older browsers, IE
+		window.ontouchmove = preventDefault # mobile
+		document.onkeydown = preventDefaultForScrollKeys
 
-	# Re-enable scrolling
 	enable: ->
-		document.body.style.cssText = originalStyles
-		scrollContainer.scrollTop = scrollTop
+		if window.removeEventListener
+			window.removeEventListener('DOMMouseScroll', preventDefault, false)
+		window.onmousewheel = document.onmousewheel = null
+		window.onwheel = null
+		window.ontouchmove = null
+		document.onkeydown = null
