@@ -1,6 +1,6 @@
 {
   "name": "body-scroll-toggle",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Enables / disables scroll on the body",
   "main": "index.js",
   "scripts": {

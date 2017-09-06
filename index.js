@@ -52,9 +52,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
-	var originalStyles, scrollTop;
+	var originalStyles, scrollContainer, scrollTop;
+
+	scrollContainer = document.scrollingElement || document.documentElement;
 
 	scrollTop = null;
 
@@ -69,18 +71,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  disable: function() {
-	    scrollTop = $(document).scrollTop();
+	    scrollTop = scrollContainer.scrollTop;
 	    originalStyles = document.body.style.cssText;
 	    return document.body.style.cssText = ';' + ("overflow: hidden; position: fixed; height:   100%; width:    100%; top:      " + (-scrollTop) + "px; ");
 	  },
 	  enable: function() {
 	    document.body.style.cssText = originalStyles;
-	    return (document.scrollingElement || document.documentElement).scrollTop = scrollTop;
+	    return scrollContainer.scrollTop = scrollTop;
 	  }
 	};
 
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
