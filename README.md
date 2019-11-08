@@ -1,3 +1,5 @@
+> I'm recommending you use https://github.com/willmcpo/body-scroll-lock rather than this package now.
+
 # Body scroll toggle
 
 Disables scroll-ability of the `body`, like you'd want when a fixed position modal is open, by logging the current scroll position and then making the body position fixed using that scroll offset of the body top.  Thus, the user shouldn't see the body shift position.  Many approaches just `overflow:hidden` on the body, but this does not disable scrolling in iOS.
